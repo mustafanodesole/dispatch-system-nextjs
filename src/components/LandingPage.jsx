@@ -17,7 +17,7 @@ import {
 } from "@nextui-org/react";
 
 const LandingPage = () => {
-    const [showForm, setshowForm] = useState(false)
+    const [showForm, setshowForm] = useState(true)
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const handleFrom = () => {
         setshowForm(true)

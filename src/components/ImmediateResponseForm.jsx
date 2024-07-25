@@ -22,8 +22,8 @@ const ImmediateResponseForm = ({ onSubmit }) => {
     };
 
     return (
-        <form className="max-w-[80%] mx-auto p-4 bg-white" onSubmit={handleSubmit}>
-            <p className="text-[23px] font-bold ">1B BILLING INFORMATION</p>
+        <form className="max-w-[80%] mx-auto p-5 bg-white rounded-lg" onSubmit={handleSubmit}>
+            <p className="text-[23px] font-bold pb-5">1B BILLING INFORMATION</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 <Input
@@ -31,7 +31,7 @@ const ImmediateResponseForm = ({ onSubmit }) => {
                     label='Name'
                     classNames={{ inputWrapper: '!bg-white' }}
                     type="text"
-                    className="w-full border border-gray-300  rounded "
+                    className="w-full border border-gray-300  rounded-md "
                     value={firstName}
                     required
                     onChange={(e) => setFirstName(e.target.value)}
@@ -43,7 +43,7 @@ const ImmediateResponseForm = ({ onSubmit }) => {
                     label="Address"
                     classNames={{ inputWrapper: '!bg-white' }}
                     type="text"
-                    className="w-full border border-gray-300  rounded "
+                    className="w-full border border-gray-300  rounded-md "
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                 />
@@ -54,7 +54,7 @@ const ImmediateResponseForm = ({ onSubmit }) => {
                     label="Pin Drop Number"
                     classNames={{ inputWrapper: '!bg-white' }}
                     type="number"
-                    className="w-full border border-gray-300  rounded "
+                    className="w-full border border-gray-300  rounded-md "
                     value={pinDropNumber}
                     onChange={(e) => setPinDropNumber(e.target.value)}
                 />
@@ -63,7 +63,7 @@ const ImmediateResponseForm = ({ onSubmit }) => {
                 <Select
                     size='sm'
                     label="Emergency Type*"
-                    classNames={{ mainWrapper: '!bg-white border-2 border-gray-300', trigger: '!bg-white' }}
+                    classNames={{ mainWrapper: '!bg-white border-2 border-gray-300 rounded-md', trigger: '!bg-white' }}
                     value={emergencyType}
                     onChange={(e) => setEmergencyType(e.target.value)}
                 >
@@ -76,7 +76,7 @@ const ImmediateResponseForm = ({ onSubmit }) => {
 
             </div>
             <div className='text-end'>
-            <Button className='mt-5' size='sm' type="submit" color="primary">
+            <Button className='mt-5 text-sm' size='sm' type="submit" color="primary">
                 Immediate Response
             </Button>
             </div>
