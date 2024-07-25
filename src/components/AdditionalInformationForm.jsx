@@ -7,7 +7,7 @@ import Profile from '@/icons/profile';
 import Age from '@/icons/Age';
 import Address from '@/icons/Address';
 import Pin from '@/icons/Pin';
-import {EmailType as EmergencyTpe} from '@/icons/EmailType';
+import EmailType from '@/icons/EmailType';
 import Note from '@/icons/Note';
 
 
@@ -98,7 +98,12 @@ const AdditionalInformationForm = ({ onSubmit, onClose }) => {
                     startContent={<Pin />}
                 />
 
-                <Select startContent={<EmergencyTpe />}  size="sm" className="w-full border p-2 border-gray-300  rounded-md"   classNames={{ inputWrapper: '!bg-white' }}  label="Emergency Type">
+                <Select 
+                
+                startContent={<EmailType />} 
+                
+                
+                size="sm" className="w-full border p-2 border-gray-300  rounded-md"   classNames={{ inputWrapper: '!bg-white' }}  placeholder="Emergency Type">
                     <SelectItem>Medical</SelectItem>
                     <SelectItem>Fire</SelectItem>
                     <SelectItem>Crime</SelectItem>
@@ -114,7 +119,7 @@ const AdditionalInformationForm = ({ onSubmit, onClose }) => {
                     placeholder="Caller Description"
                     size="sm"
                     classNames={{ inputWrapper: '!bg-white' }}
-                    className="w-full border border-gray-300  rounded"
+                    className="w-full border border-gray-300 p-2 rounded"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     startContent={<Note />}
@@ -124,10 +129,11 @@ const AdditionalInformationForm = ({ onSubmit, onClose }) => {
                     placeholder="Special Instructions"
                     size="sm"
                     classNames={{ inputWrapper: '!bg-white' }}
-                    className="w-full border border-gray-300  rounded"
+                    className="w-full  border border-gray-300 p-2 rounded"
                     value={specialInstructions}
                     onChange={(e) => setSpecialInstructions(e.target.value)}
                     startContent={<Note />}
+                    
                 
                 />
 

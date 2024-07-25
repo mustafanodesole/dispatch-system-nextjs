@@ -36,9 +36,6 @@ const LandingPage = () => {
             <Map center={center} />
             <div className='my-10'>
                 {!showForm ? <section className="px-3 grid grid-cols-1 md:grid-cols-3 gap-4">
-
-
-
                     <div onClick={handleFrom} className='flex justify-center'>
                         <Card className=" cursor-pointer shadow-none bg-transparent rounded-none border-none w-3/4">
                             <CardBody className="overflow-visible p-0 py-1 ">

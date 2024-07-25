@@ -97,8 +97,9 @@ export default function CallLog() {
                     {rows.map((row,index) => (
                         <React.Fragment key={row.id}>
                             <tr className="even:bg-[#F4FBF8] text-start " onClick={()=>{setArcIndex((prevIndex)=> prevIndex === index ? NaN : index)}}>
-                                <td className="ps-5 py-5 flex items-center"> <span className="pr-3">{index != arcIndex ? <MdKeyboardArrowRight /> : <MdKeyboardArrowDown />}</span>{row.caller}</td>
+                                <td className="ps-5 py-5 flex items-start"> <span className="pr-3">{index != arcIndex ? <MdKeyboardArrowRight /> : <MdKeyboardArrowDown />}</span>{row.caller}</td>
                                 <td>{row.phoneNumber}</td>
+                                
                                 <td>{row.dateTime}</td>
                                 <td>{row.emergencyType}</td>
                                 <td>{row.duration}</td>
@@ -113,6 +114,7 @@ export default function CallLog() {
                                 <td colSpan={columns.length}>
                                     <AccordionComponent row={row} />
                                 </td>
+                                
                             </tr> : <></>}
                         </React.Fragment>
                     ))}

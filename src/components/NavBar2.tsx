@@ -12,15 +12,15 @@ export default  function NavBar2()  {
 
     // Replace javascript:void(0) paths with your paths
     const navigation = [
-        { title: "Home", path: "/" },
+        { title: "Home", path: "/profile" },
         { title: "Dashboard", path: "/dashboard" },
-        { title: "Calls", path: "" },
+        { title: "Calls", path: "call-history" },
         { title: "History", path: "" }
     ]
 
     return (
         <nav className="bg-[#2D8076] border-b w-full md:static md:text-sm md:border-none text-white z-30 h-auto">
-            <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
+            <div className="items-center px-4  mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                     <Link href="/" className='text-2xl font-bold'>
                        Logo
