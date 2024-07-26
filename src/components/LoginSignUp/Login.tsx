@@ -19,7 +19,7 @@ const LoginSignup: FC = () => {
         <CardHeader className="justify-center font-bold  p-0 pt-3 text-xl">
           Login
         </CardHeader>
-        <CardBody>
+        <CardBody className="">
           <LoginTab setSelected={setSelected} onClick={handleNaviagtion} />
         </CardBody>
       

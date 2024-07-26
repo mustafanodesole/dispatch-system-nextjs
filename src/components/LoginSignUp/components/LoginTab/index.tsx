@@ -88,7 +88,7 @@ const LoginTab: FC<LoginTabProps> = ({ setSelected, onClick }) => {
   );
 
   return (
-    <div onKeyDown={handleEnter} className="flex flex-col gap-[20px] -z-10">
+    <div onKeyDown={handleEnter} className="flex flex-col gap-[20px] ">
       <TextField
         name="email"
         label="Email"

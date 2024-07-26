@@ -19,7 +19,7 @@ export default  function NavBar2()  {
     ]
 
     return (
-        <nav className="bg-[#2D8076] border-b w-full md:static md:text-sm md:border-none text-white z-30 h-auto">
+        <nav className="bg-[#2D8076] border-b w-full md:static md:text-sm md:border-none text-white  z-10">
             <div className="items-center px-4  mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                     <Link href="/" className='text-2xl font-bold'>
