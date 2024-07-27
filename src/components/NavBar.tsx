@@ -22,8 +22,8 @@ export const animals = [
 ]
 export default function NavBar() {
   return (
-    <Navbar className="bg-[#2D8076]  text-[14px] flex justify-between">
-      <NavbarBrand className="text-white">
+    <Navbar className="bg-[#2D8076] text-[#2D2D2D] text-[14px]">
+      <NavbarBrand className="">
         <p className="font-bold  px-4 py-1 rounded-lg text-inherit">
           <Link className="text-white bg-transparent" href={"/"}>
             Logo

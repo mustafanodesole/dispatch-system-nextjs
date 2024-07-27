@@ -1,6 +1,15 @@
 'use client';
 import { useState } from 'react';
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Button, Input, Textarea , Select , SelectItem } from "@nextui-org/react";
+import { CgProfile } from "react-icons/cg";
+import { FaPhoneAlt } from "react-icons/fa";
+import Profile from '@/icons/profile';
+import Age from '@/icons/Age';
+import Address from '@/icons/Address';
+import Pin from '@/icons/Pin';
+import EmailType from '@/icons/EmailType';
+import Note from '@/icons/Note';
+
 
 const AdditionalInformationForm = ({ onSubmit, onClose }) => {
     const [age, setAge] = useState('');
@@ -30,115 +39,113 @@ const AdditionalInformationForm = ({ onSubmit, onClose }) => {
     };
 
     return (
-        <form className="max-w-[90%] mx-auto p-4 bg-white" onSubmit={handleSubmit}>
-            <div className='flex flex-col sm:flex-row items-baseline mb-2'>
-            <p className="text-[23px] font-bold ">Additional Information</p>
-            <p className="text-1xl font-bold">(Caller Information)</p>
+        <form className="max-w-[90%] mx-auto p-8 bg-white shadow-md rounded-lg" onSubmit={handleSubmit}>
+            <div className='flex flex-col gap-2 sm:flex-row items-baseline mb-2'>
+                        <p className="text-[23px] font-bold ">Add Information</p>
+                        {/* <p className="text-1xl font-bold">(Caller Information)</p> */}
             </div>
         <div className='grid gap-4'>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
 
                 <Input
-                    label="Age"
+                 
+                    size="sm"
+                    placeholder="Caller's Name"
+                    classNames={{ inputWrapper: '!bg-white' }}
+                    type="text"
+                    className="w-full border p-2 border-gray-300  rounded "
+                    // startContent={<CgProfile className='mr-1 text-[#2D8076]'/>}
+                    // labelPlacement="outside"
+                    startContent={<Profile/>}
+                    />
+                
+
+                <Input
+                    // label="Phone Number"
+                    placeholder='Phone Number'
                     size="sm"
                     classNames={{ inputWrapper: '!bg-white' }}
                     type="number"
-                    className="w-full border border-gray-300  rounded "
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                />
-
-                <Input
-                    label="Address 2"
-                    size="sm"
-                    classNames={{ inputWrapper: '!bg-white' }}
-                    type="text"
-                    className="w-full border border-gray-300  rounded "
-                    value={address2}
-                    onChange={(e) => setAddress2(e.target.value)}
+                    className="w-full border p-2 border-gray-300 text-gray-500  rounded "
+                    startContent={<FaPhoneAlt  className='mr-1 text-[#2D8076]'/>}
                 />
                 <Input
-                    label="Any Witness"
+                placeholder="Age"
                     size="sm"
                     classNames={{ inputWrapper: '!bg-white' }}
-                    type="text"
-                    className="w-full border border-gray-300  rounded"
-                    value={witness}
-                    onChange={(e) => setWitness(e.target.value)}
+                    type="number"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                   startContent={<Age />}
                 />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <Input
-                    label="Country Code"
-                    type="text"
-                    size="sm"
-                    classNames={{ inputWrapper: '!bg-white' }}
-                    className="w-full border border-gray-300  rounded"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                />
-
-                <Input
-                    label="Area"
-                    type="text"
-                    size="sm"
-                    classNames={{ inputWrapper: '!bg-white' }}
-                    className="w-full border border-gray-300  rounded"
-                />
-
-                <Input
-                    label="Phone Number"
-                    type="text"
-                    size="sm"
-                    classNames={{ inputWrapper: '!bg-white' }}
-                    className="w-full border border-gray-300  rounded"
-                />
-
-                <Input
-                    label="Ext"
-                    type="text"
-                    size="sm"
-                    classNames={{ inputWrapper: '!bg-white' }}
-                    className="w-full border border-gray-300  rounded"
-                />
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Input
+                    placeholder="Address"
+                    type="text"
+                    size="sm"
+                    classNames={{ inputWrapper: '!bg-white' }}
+                    className="w-full p-2 border border-gray-300  rounded-md"
+                   startContent={<Address />}
+                />
+
+                <Input
+                    placeholder="Pin Drop Number"
+                    type="number"
+                    size="sm"
+                    classNames={{ inputWrapper: '!bg-white' }}
+                    className="w-full border border-gray-300 p-2  rounded-md"
+                    startContent={<Pin />}
+                />
+
+                <Select 
+                
+                startContent={<EmailType />} 
+                
+                
+                size="sm" className="w-full border p-2 border-gray-300  rounded-md"   classNames={{ inputWrapper: '!bg-white' }}  placeholder="Emergency Type">
+                    <SelectItem>Medical</SelectItem>
+                    <SelectItem>Fire</SelectItem>
+                    <SelectItem>Crime</SelectItem>
+                    <SelectItem>Other</SelectItem>
+                </Select>
+
+               
+            </div>
+
+            <div className="grid grid-cols-1  gap-4">
 
                 <Textarea
-                    label="Description of Emergency"
+                    placeholder="Caller Description"
                     size="sm"
                     classNames={{ inputWrapper: '!bg-white' }}
-                    className="w-full border border-gray-300  rounded"
+                    className="w-full border border-gray-300 p-2 rounded"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                    startContent={<Note />}
                 />
 
                 <Textarea
-                    label="Special Instructions"
+                    placeholder="Special Instructions"
                     size="sm"
                     classNames={{ inputWrapper: '!bg-white' }}
-                    className="w-full border border-gray-300  rounded"
+                    className="w-full  border border-gray-300 p-2 rounded"
                     value={specialInstructions}
                     onChange={(e) => setSpecialInstructions(e.target.value)}
+                    startContent={<Note />}
+                    
+                
                 />
 
-                <Textarea
-                    label="Detailed Incident Information"
-                    size="sm"
-                    classNames={{ inputWrapper: '!bg-white' }}
-                    className="w-full border border-gray-300  rounded"
-                    value={detailInstructions}
-                    onChange={(e) => setDetailInstructions(e.target.value)}
-                />
+               
             </div>
             </div>
             <div className="mt-4  flex max-sm:flex-col sm:flex-row gap-2 justify-end">
                 <Button color="danger" variant="flat" onPress={onClose} size='sm'>
                     Close
                 </Button>
-                <Button type="submit" color="primary" size='sm' fullWidth={false}>
-                    Submit Additional Information
+                <Button type="submit" className='bg-[#2D8076] text-white' size='sm' fullWidth={false}>
+                    Response Imediate
                 </Button>
             </div>
         </form>
