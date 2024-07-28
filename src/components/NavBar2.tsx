@@ -16,7 +16,7 @@ export default  function NavBar2()  {
     const navigation = [
         { title: "Home", path: "/" },
         { title: "Dashboard", path: "/dashboard" },
-        { title: "Calls History", path: "calls-history" },
+        { title: "Calls History", path: "/calls-history" },
         // { title: "History", path: "" }
     ]
     const currentPath = usePathname()

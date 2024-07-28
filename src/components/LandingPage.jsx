@@ -32,7 +32,7 @@ const LandingPage = () => {
         lng: 74.36152118336334,
     };
     return (
-        <main className=" mx-auto sm:h-[93vh] ">
+        <main className=" mx-auto sm:h-[95vh] ">
             <Map center={center} />
             <div className='my-10'>
                 {!showForm ? <section className="px-3 grid grid-cols-1 md:grid-cols-3 gap-4">
