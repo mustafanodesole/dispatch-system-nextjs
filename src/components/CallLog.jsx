@@ -64,7 +64,7 @@ export default function CallLog() {
     return (
         <div className="m-4 h-screen">
             <div className="flex justify-between mb-5">
-                <h1 className="text-2xl font-bold">Call History</h1>
+                <h1 className="text-2xl font-bold"></h1>
                 <div className="flex items-center space-x-2">
                     <Input
                         isClearable
@@ -108,7 +108,7 @@ export default function CallLog() {
                                         {row.status}
                                     </span>
                                 </td>
-                                <td className="text-center"><span className="w-max flex text-xs py-[6px] pl-[8px] pr-[8px] rounded-full   bg-[#2D8076] text-white items-center"><IoShareSocialOutline />Share</span></td>
+                                <td className="text-center"><span className="w-max flex text-xs py-[6px] pl-[8px] pr-[8px] rounded-full   bg-[#2D8076] text-white items-center gap-1"><IoShareSocialOutline />Share</span></td>
                             </tr>
                            {index === arcIndex ?  <tr >
                                 <td colSpan={columns.length}>
