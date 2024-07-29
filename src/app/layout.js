@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body 
       // className={lato.className}
-      className="overflow-hidden"
+      className="lg:overflow-hidden"
       >
         <Providers>{children}</Providers>
       </body>

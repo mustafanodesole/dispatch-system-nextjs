@@ -25,14 +25,14 @@ export default function NavBar() {
     <Navbar className="shadow-lg text-[#2D2D2D] text-[14px]">
       <NavbarBrand className="">
         <p className="font-bold  px-4 py-1 rounded-lg text-inherit">
-          <Link className="text-[#2D8076] bg-transparent" href={"/"}>
+          <Link className="text-white bg-transparent" href={"/"}>
             Logo
           </Link>
         </p>
       </NavbarBrand>
       <NavbarContent
-        className="text=[#2D2D2D] hidden sm:flex gap-4"
-        justify="end"
+        className="text-white "
+       
       >
         <NavbarItem >
           <Link color="foreground" href="/profile" className="">
@@ -46,12 +46,12 @@ export default function NavBar() {
         </NavbarItem>
         <NavbarItem>
           <Link color="white" href="#">
-            Calls
+            Map
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="white" href="#">
-            Map
+            Calls
           </Link>
         </NavbarItem>
         <NavbarItem >

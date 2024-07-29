@@ -30,7 +30,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/models/userModel.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -18,7 +18,7 @@ const FormComponent = () => {
 
     return (
         <div className='px-16 min-h-[94vh]'>
-            <p className='text-2xl py-8' >My Profile</p>
+            <p className='text-2xl py-8' ></p>
             <div className='bg-white rounded-3xl pb-8'>
                 <div className='bg-gradient-to-r from-[#B6D3F1] to-[#FCF7E1] py-10 max-sm:py-10 rounded-tr-3xl rounded-tl-3xl'>
                 </div>

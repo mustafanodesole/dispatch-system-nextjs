@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { IoSettingsSharp } from "react-icons/io5";
 import { FaBell } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import { usePathname } from 'next/navigation';
+
 
 
 export default  function NavBar2()  {
@@ -12,11 +14,12 @@ export default  function NavBar2()  {
 
     // Replace javascript:void(0) paths with your paths
     const navigation = [
-        { title: "Home", path: "/profile" },
+        { title: "Home", path: "/" },
         { title: "Dashboard", path: "/dashboard" },
-        { title: "Calls", path: "call-history" },
-        { title: "History", path: "" }
+        { title: "Calls History", path: "/calls-history" },
+        // { title: "History", path: "" }
     ]
+    const currentPath = usePathname()
 
     return (
         <nav className="bg-[#2D8076] border-b w-full md:static md:text-sm md:border-none text-white  z-10">
@@ -48,10 +51,10 @@ export default  function NavBar2()  {
                         {
                             navigation.map((item, idx) => {
                                 return (
-                                    <li key={idx} className="text-white text-center hover:bg-white/40 p-2 rounded-md font-semibold  ">
-                                        <a href={item.path} className="block">
+                                    <li key={idx} className="">
+                                        <Link href={item.path} className={currentPath === item.path ? "bg-white/40 p-2 rounded-md text-white font-semibold" : "text-white text-center hover:bg-white/40 p-2 rounded-md font-semibold"}>
                                             {item.title}
-                                        </a>
+                                        </Link>
                                     </li>
                                 )
                             })
