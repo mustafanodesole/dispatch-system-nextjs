@@ -10,9 +10,6 @@ import Pin from "@/icons/Pin";
 import EmailType from "@/icons/EmailType";
 import Note from "@/icons/Note";
 import Map from "./Map";
-import { CiSearch } from "react-icons/ci";
-import { FaSearch, FaFilter, FaTable } from "react-icons/fa";
-import Popup from './popup'
 
 const AdditionalInformationForm = ({ onSubmit, onClose }) => {
   const [age, setAge] = useState("");
@@ -23,7 +20,7 @@ const AdditionalInformationForm = ({ onSubmit, onClose }) => {
   const [specialInstructions, setSpecialInstructions] = useState("");
   const [detailInstructions, setDetailInstructions] = useState("");
   const [showMap, setShowMap] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,49 +52,13 @@ const AdditionalInformationForm = ({ onSubmit, onClose }) => {
     lng: 74.36152118336334,
   };
 
-  const handlePageClick = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-
-  useEffect(() => {
-    document.addEventListener('click', handlePageClick);
-    return () => {
-      document.removeEventListener('click', handlePageClick);
-    };
-  }, []);
+  
 
 
 
   return (
     <>
-      {showMap ? (
-        <div>
-          <Popup  isOpen={showModal} onClose={handleCloseModal}/>
-          <div className="flex items-center justify-end space-x-2 p-5">
-                    <Input
-                        isClearable
-                        radius="lg"
-                        className="w-auto"
-                        placeholder="Search for personal by name id"
-                        startContent={
-                            <CiSearch className="text-[#2D8076] mb-0.5 pointer-events-none flex-shrink-0" />
-                        }
-                    />
-                    {/* <button className="p-2 bg-gray-100 rounded-md">
-                        <FaFilter />
-                    </button>
-                    <button className="p-2 bg-gray-100 rounded-md">
-                        <FaTable />
-                    </button> */}
-                </div>
-          <Map center={center} height={"80vh"} />
-        </div>
-      ) : (
+      
         <div>
           <Map center={center} height={"35vh"} />
           <form
@@ -210,7 +171,7 @@ const AdditionalInformationForm = ({ onSubmit, onClose }) => {
             </div>
           </form>
         </div>
-      )}
+      
     </>
   );
 };

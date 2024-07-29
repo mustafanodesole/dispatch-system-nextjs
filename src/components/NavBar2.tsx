@@ -17,6 +17,7 @@ export default  function NavBar2()  {
         { title: "Home", path: "/" },
         { title: "Dashboard", path: "/dashboard" },
         { title: "Calls History", path: "/calls-history" },
+        { title: "Navigation", path: "/navigation" },
         // { title: "History", path: "" }
     ]
     const currentPath = usePathname()
