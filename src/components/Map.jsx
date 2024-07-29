@@ -1,19 +1,20 @@
 "use client";
 import { Spinner } from "@nextui-org/react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import React, { useCallback, useState, useEffect } from "react";
 
-const containerStyle = {
-  width: "100%",
-  height: "33vh",
-};
-
-const Map = ({ center }) => {
+const Map = ({ center, height }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyDCQ_UrxKRUnMpP_f7mnT0BxZcjcSnp7EY",
   });
   const [map, setMap] = useState(null);
+  const [selectedPosition, setSelectedPosition] = useState(null);
 
   const onLoad = useCallback(
     function callback(map) {
@@ -28,14 +29,21 @@ const Map = ({ center }) => {
     setMap(null);
   }, []);
 
+  const containerStyle = {
+    width: "100%",
+    height: height,
+  };
+
   useEffect(() => {
     if (isLoaded && map) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
+              // lat: position.coords.latitude,
+              // lng: position.coords.longitude,
+              lat : 34.6992,
+              lng : 72.2630
             };
 
             // Center the map on the user's location
@@ -46,6 +54,7 @@ const Map = ({ center }) => {
               position: pos,
               map: map,
               title: "You are here",
+              onClick: () => setSelectedPosition(pos),
             });
           },
           () => {
@@ -73,16 +82,25 @@ const Map = ({ center }) => {
   }
 
   return isLoaded ? (
-    
-      <GoogleMap
-      
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={8}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      ></GoogleMap>
-
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={center}
+      zoom={8}
+      onLoad={onLoad}
+      onUnmount={onUnmount}
+    >
+      {selectedPosition && (
+        <InfoWindow
+          position={selectedPosition}
+          onCloseClick={() => setSelectedPosition(null)}
+        >
+          <div>
+            <h2>You are here</h2>
+            <p>This is your current location</p>
+          </div>
+        </InfoWindow>
+      )}
+    </GoogleMap>
   ) : (
     <div className="flex items-center justify-center h-[30vh]">
       <Spinner color="default" label="Map Loading" />

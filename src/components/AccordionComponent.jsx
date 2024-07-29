@@ -34,7 +34,7 @@ export default function AccordionComponent({ row }) {
                         <p className="text-sm font-normal">{row.age}</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-3 lg:ml-28">
+                <div className="flex items-center gap-3 lg:ml-12">
                     <div>
                         <Image alt="nextui logo" height={40} radius="sm" src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4" width={40} />
                     </div>
@@ -43,7 +43,7 @@ export default function AccordionComponent({ row }) {
                         <p className="text-sm font-normal">{row.dispatcherName}</p>
                     </div>
                 </div>
-                <div className="flex ml-[65px] items-center gap-3 lg:ml-28">
+                <div className="flex ml-[65px] items-center gap-3 lg:ml-12">
                     <div>
                         <Image alt="nextui logo" height={40} radius="sm" src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4" width={40} />
                     </div>
@@ -52,7 +52,7 @@ export default function AccordionComponent({ row }) {
                         <p className="text-sm font-normal">{row.emergencyPersonnel}</p>
                     </div>
                 </div>
-                <div className="flex lg:-ml-20 items-center gap-3">
+                <div className="flex lg:-ml-16 items-center gap-3">
                     <div>
                         <BsClockHistory size={40} color="#2D8076" className="border rounded-full bg-[#2D807626] p-2" />
                     </div>
@@ -88,7 +88,7 @@ export default function AccordionComponent({ row }) {
                         <p className="text-sm font-normal">{row.callEndTime}</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-3 lg:ml-28">
+                <div className="flex items-center gap-3 lg:ml-12">
                     <div>
                         <CiLocationOn size={40} color="#2D8076" className="border rounded-full bg-[#2D807626] p-2" />
                     </div>
@@ -97,7 +97,7 @@ export default function AccordionComponent({ row }) {
                         <p className="text-sm font-normal">{row.address}</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-3 col-span-2 ml-28">
+                <div className="flex items-center gap-3 col-span-2 lg:ml-12">
                     <div>
                         <PiTelevisionLight size={40} color="#2D8076" className="border rounded-full bg-[#2D807626] p-2" />
                     </div>

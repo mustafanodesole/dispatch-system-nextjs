@@ -1,20 +1,28 @@
 import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
-  fullname: {
+  firstname: {
     type: "string",
     required: [true, "Provide Fullname"],
   },
-
+  lastname: {
+    type: "string",
+    required: [true, "Provide Fullname"],
+  },
   email: {
     type: "string",
     required: [true, "Please Provide a Email"],
     unique: true,
   },
 
-  username: {
-    type: "string",
-    required: [true, "Please Provide a Username"],
+  phonenumber: {
+    type: "number",
+    required: [true, "Please Provide a Phone number"],
     unique: true,
+  },
+
+  role : {
+    type : "string",
+    required : true
   },
 
   password: {
@@ -22,15 +30,16 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please Provide a Password"],
   },
 
+
   isVerified: {
     type: Boolean,
     default: false,
   },
 
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
+  // isAdmin: {
+  //   type: Boolean,
+  //   default: false,
+  // },
 
   forgotPasswordToken: String,
   forgotPasswordTokenExpiry: Date,
