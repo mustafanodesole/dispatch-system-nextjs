@@ -5,10 +5,12 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { FaBell } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { usePathname } from 'next/navigation';
+import { Input } from '@nextui-org/react';
+import { CiSearch } from 'react-icons/ci';
 
 
 
-export default  function NavBar2()  {
+export default function NavBar2() {
 
     const [state, setState] = useState(false)
 
@@ -17,7 +19,7 @@ export default  function NavBar2()  {
         { title: "Home", path: "/" },
         { title: "Dashboard", path: "/dashboard" },
         { title: "Calls History", path: "/calls-history" },
-        { title: "Navigation", path: "/navigation" },
+        { title: "Map", path: "/map" },
         // { title: "History", path: "" }
     ]
     const currentPath = usePathname()
@@ -27,7 +29,7 @@ export default  function NavBar2()  {
             <div className="items-center px-4  mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                     <Link href="/" className='text-2xl font-bold'>
-                       Logo
+                        Logo
                     </Link>
                     <div className="md:hidden">
                         <button className="text-gray-100 hover:text-gray-800"
@@ -56,24 +58,37 @@ export default  function NavBar2()  {
                                         <Link href={item.path} className={currentPath === item.path ? "bg-white/40 p-2 rounded-md text-white font-semibold" : "text-white text-center hover:bg-white/40 p-2 rounded-md font-semibold"}>
                                             {item.title}
                                         </Link>
+
+
                                     </li>
                                 )
                             })
                         }
+
                         {/* <span className='hidden w-px h-6 bg-gray-300 md:block'></span> */}
                         <div className='space-y-3  items-center gap-x-6 md:flex md:space-y-0 flex flex-col justify-center md:flex-row '>
+                            {currentPath === "/map" && <Input
+                                isClearable
+                                radius="lg"
+                                className="w-auto"
+                                placeholder="Search for personal by name id"
+                                startContent={
+                                    <CiSearch className="text-[#2D8076] mb-0.5 pointer-events-none flex-shrink-0" />
+                                }
+                            />}
+
                             <li>
-                            <IoSettingsSharp className='text-white hover:bg-white/40 p-2 rounded-md text-4xl'/>
+                                <IoSettingsSharp className='text-white hover:bg-white/40 p-2 rounded-md text-4xl' />
                             </li>
                             <li>
-                            <FaBell className='text-white hover:bg-white/40 p-2 rounded-md text-4xl'/>
+                                <FaBell className='text-white hover:bg-white/40 p-2 rounded-md text-4xl' />
                             </li>
                             <li>
                                 {/* <a href="/signin" className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline">
                                     Sign in
                                 </a> */}
 
-                               <CgProfile className='rounded-full text-2xl'/> 
+                                <CgProfile className='rounded-full text-2xl' />
 
                             </li>
                         </div>

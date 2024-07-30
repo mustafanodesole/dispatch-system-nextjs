@@ -62,7 +62,7 @@ const AdditionalInformationForm = ({ onSubmit, onClose }) => {
         <div>
           <Map center={center} height={"35vh"} />
           <form
-            className="max-w-[96%] mt-10 w-full mx-auto p-4 bg-white shadow-md rounded-lg"
+            className="max-w-[96%] mt-10 w-full mx-auto p-4 bg-white shadow-md rounded-lg "
             onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-2 sm:flex-row items-baseline mb-2">

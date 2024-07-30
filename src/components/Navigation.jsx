@@ -43,7 +43,7 @@ const Navigation = () => {
             <div>
                 <Popup isOpen={showModal} onClose={handleCloseModal} />
                 <div className="flex items-center justify-end space-x-2 p-5">
-                    <Input
+                    {/* <Input
                         isClearable
                         radius="lg"
                         className="w-auto"
@@ -51,7 +51,7 @@ const Navigation = () => {
                         startContent={
                             <CiSearch className="text-[#2D8076] mb-0.5 pointer-events-none flex-shrink-0" />
                         }
-                    />
+                    /> */}
                     {/* <button className="p-2 bg-gray-100 rounded-md">
                         <FaFilter />
                     </button>
