@@ -14,20 +14,21 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
 
-  phonenumber: {
-    type: "number",
+  phone: {
+    type: "string",
     required: [true, "Please Provide a Phone number"],
     unique: true,
   },
 
+
   role : {
     type : "string",
-    required : true
+    required : false
   },
 
   password: {
     type: "string",
-    required: [true, "Please Provide a Password"],
+    required: [false, "Please Provide a Password"],
   },
 
 

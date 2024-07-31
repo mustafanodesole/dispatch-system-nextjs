@@ -1,7 +1,7 @@
 "use client";
 import TextField from "@/components/FormInputs/TextField";
 import { showFieldError } from "@/utils/form";
-import { Button } from "@nextui-org/react";
+import { Button, Spinner } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { FC, useCallback, useMemo, useState } from "react";
 import {
@@ -10,17 +10,24 @@ import {
   loginInitialValues,
 } from "./form";
 import { LoginTabProps } from "./types";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { EyeSlashFilledIcon } from "@/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "@/icons/EyeFilledIcon";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+
 
 const LoginTab: FC<LoginTabProps> = ({ setSelected, onClick }) => {
   const [isPassVisible, setIsPassVisible] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [resetEmail, setResetEmail] = useState<any>("");
+  const [error , setError] = useState(false)
 
   const [showForgotPassword, setShowForgotPassword] = useState<boolean>(false);
+
+
+  const router = useRouter();
 
   const toggleShowForgotPassword = useCallback(() => {
     setShowForgotPassword((p) => !p);
@@ -87,8 +94,36 @@ const LoginTab: FC<LoginTabProps> = ({ setSelected, onClick }) => {
     </button>
   );
 
+
+
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+
+
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/auth/login", {
+        email : loginFormikValues.email,
+        password : loginFormikValues.password,
+      });
+      setError(false)
+      console.log("Login Success", response.data);
+      toast.success("Login Success");
+      router.push("/dashboard");
+    } catch (error: any) {
+     
+      console.log(error.message);
+
+      // toast.error("Password or Email incorrect");
+      setError(true)
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div onKeyDown={handleEnter} className="flex flex-col gap-[20px]">
+      {loading && <Spinner label="Loading..." color="warning" />}
       <TextField
         name="email"
         label="Email"
@@ -126,6 +161,7 @@ const LoginTab: FC<LoginTabProps> = ({ setSelected, onClick }) => {
         )}
         endContent={passwordToggleEl}
       />
+      {error && <p className="text-red-700">Password or Email Incorrect</p>}
 
       {/* <p className="text-center text-[16px]">
         Need to create an account?{" "}
@@ -148,11 +184,11 @@ const LoginTab: FC<LoginTabProps> = ({ setSelected, onClick }) => {
         color="primary"
         // isLoading={isLoginLoading}
         onPress={() => loginFormik.handleSubmit()}
-        onClick={onClick}
+        onClick={handleLogin}
       >
         Login
       </Button>
-
+        <Toaster />
       <p className="text-center">
         Dont&apos;t have an account?{" "}
         <Link href={"/sign-up"} className="text-blue-600">

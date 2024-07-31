@@ -1,7 +1,6 @@
 import TextField from "@/components/FormInputs/TextField";
-
 import { showFieldError } from "@/utils/form";
-import { Button, Select, SelectItem } from "@nextui-org/react";
+import { Button, Select, SelectItem, Spinner } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { FC, useCallback, useMemo, useState } from "react";
 import { FormInputs, formValidation, initialValues } from "./form";
@@ -11,11 +10,16 @@ import { EyeSlashFilledIcon } from "@/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "@/icons/EyeFilledIcon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import axios from "axios";
+import { Suspense } from "react";
 
 const SignUpTab: FC<SignUpTabProps> = ({ setSelected }) => {
   const [isPassVisible, setIsPassVisible] = useState<boolean>(false);
   const [isConfirmPassVisible, setIsConfirmPassVisible] = useState<boolean>(false);
+  const [role , setRole]  = useState("")
+
   const router = useRouter()
+
 
 
   const handleEnter = (e: { key: string }) => {
@@ -35,7 +39,7 @@ const SignUpTab: FC<SignUpTabProps> = ({ setSelected }) => {
   const formik = useFormik({
     initialValues,
     validationSchema: formValidation,
-    onSubmit: ()=>{},
+    onSubmit: () => { },
   });
 
   const formikValues = useMemo(() => formik.values, [formik.values]);
@@ -69,11 +73,46 @@ const SignUpTab: FC<SignUpTabProps> = ({ setSelected }) => {
   );
 
   const roles = [
-    {key: "Ploice Admin", label: "Ploice Admin"},
-    {key: "Ambulance Admin", label: "Ambulance Admin"},
-    {key: "Fire Admin", label: "Fire Admin"},
+    { key: "Ploice Admin", label: "Ploice Admin" },
+    { key: "Ambulance Admin", label: "Ambulance Admin" },
+    { key: "Fire Admin", label: "Fire Admin" },
   ];
+
+
+
+
+  const handleSignUp = async (e: any) => {
+    e.preventDefault();
+    console.log("Form Submitted");
+
+    try {
+     
+      const response = await axios.post(
+        "/api/auth/register",
+        {
+          firstname : formikValues.firstName,
+          lastname : formikValues.lastName,
+          email : formikValues.email,
+          role : role,
+          phone : formikValues.phone,
+          password : formikValues.password
+
+        }
+      );
+      toast.success("Form Submitted");
+      console.log(response.data);
+      router.push("/login");
+    } catch (error: any) {
+      console.log(error.message);
+
+      toast.error(error.message);
+    } finally {
+     
+    }
+  };
+
   return (
+    <Suspense fallback={<Spinner color="default"/>}>
     <div onKeyDown={handleEnter} className="flex flex-col gap-[20px]">
       <div className="flex gap-[10px]">
         <TextField
@@ -131,13 +170,15 @@ const SignUpTab: FC<SignUpTabProps> = ({ setSelected }) => {
         isInvalid={!!showFieldError(formik.touched.phone, formik.errors.phone)}
         errorMessage={showFieldError(formik.touched.phone, formik.errors.phone)}
       />
-<Select
+      <Select
         label="Select Role"
+        value={role}
+        onChange={(e) => setRole(e.target.value)}
         className="w-full mt-5"
-        classNames={{innerWrapper: "!pt-0 !h-[4px] !min-h-[4px]", trigger:"!h-[40px] !min-h-[40px]"}}
+        classNames={{ innerWrapper: "!pt-0 !h-[4px] !min-h-[4px]", trigger: "!h-[40px] !min-h-[40px]" }}
       >
         {roles.map((animal) => (
-          <SelectItem key={animal.key} >
+          <SelectItem value={animal.label}  key={animal.key} >
             {animal.label}
           </SelectItem>
         ))}
@@ -197,11 +238,13 @@ const SignUpTab: FC<SignUpTabProps> = ({ setSelected }) => {
         className=" text-white text-[16px]"
         color="primary"
         // isLoading={isLoading}
-        onPress={() => router.push('/')}
+        // onPress={() => router.push('/')}
+        onClick={handleSignUp}
       >
         Sign up
       </Button>
     </div>
+    </Suspense>
   );
 };
 

@@ -5,6 +5,7 @@ export interface FormInputs {
   firstName: string;
   lastName: string;
   email: string;
+  role : String;
   phone: string;
   password: string;
   confirmPassword: string;
@@ -14,6 +15,7 @@ export const initialValues: FormInputs = {
   firstName: "",
   lastName: "",
   email: "",
+  role : '',
   phone: "",
   password: "",
   confirmPassword: "",
