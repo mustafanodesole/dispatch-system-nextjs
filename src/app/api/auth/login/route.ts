@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       expiresIn: "2d",
     });
 
-    const response = await NextResponse.json({
+    const response = NextResponse.json({
       message: "Login Success",
       success: true,
     });
@@ -51,8 +51,15 @@ export async function POST(request: NextRequest) {
     //setting token into the browser cookies
     response.cookies.set("token", token, {
       httpOnly: true,
+      // secure: process.env.NODE_ENV === "production",
+      // sameSite: "strict",
+      // path: "/",
+      // maxAge: 2 * 24 * 60 * 60, // 2 days
     });
 
+
+    // const storage = localStorage.setItem("token" , `${token}`)
+    // console.log(storage)
     return response;
   } catch (error: any) {
     return NextResponse.json(

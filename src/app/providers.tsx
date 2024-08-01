@@ -1,5 +1,4 @@
 // app/providers.tsx
-"use client";
 
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
@@ -10,7 +9,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <>
       {/* <NavBar /> */}
-      <NavBar2 />
+      {/* <NavBar2 /> */}
       <NextUIProvider>
         {children}
       </NextUIProvider>

@@ -16,7 +16,8 @@ import { Suspense } from "react";
 const SignUpTab: FC<SignUpTabProps> = ({ setSelected }) => {
   const [isPassVisible, setIsPassVisible] = useState<boolean>(false);
   const [isConfirmPassVisible, setIsConfirmPassVisible] = useState<boolean>(false);
-  const [role , setRole]  = useState("")
+  const [role, setRole] = useState("")
+  const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter()
 
@@ -86,16 +87,17 @@ const SignUpTab: FC<SignUpTabProps> = ({ setSelected }) => {
     console.log("Form Submitted");
 
     try {
-     
+
+      setLoading(true);
       const response = await axios.post(
         "/api/auth/register",
         {
-          firstname : formikValues.firstName,
-          lastname : formikValues.lastName,
-          email : formikValues.email,
-          role : role,
-          phone : formikValues.phone,
-          password : formikValues.password
+          firstname: formikValues.firstName,
+          lastname: formikValues.lastName,
+          email: formikValues.email,
+          role: role,
+          phone: formikValues.phone,
+          password: formikValues.password
 
         }
       );
@@ -107,143 +109,144 @@ const SignUpTab: FC<SignUpTabProps> = ({ setSelected }) => {
 
       toast.error(error.message);
     } finally {
-     
+      setLoading(false)
     }
   };
 
   return (
-    <Suspense fallback={<Spinner color="default"/>}>
-    <div onKeyDown={handleEnter} className="flex flex-col gap-[20px]">
-      <div className="flex gap-[10px]">
+    <Suspense fallback={<Spinner color="default" />}>
+      {loading && <Spinner label="Loading..." color="warning" />}
+      <div onKeyDown={handleEnter} className="flex flex-col gap-[20px]">
+        <div className="flex gap-[10px]">
+          <TextField
+            name="firstName"
+            label="First Name"
+            value={formikValues.firstName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            // isDisabled={isLoading}
+            isInvalid={
+              !!showFieldError(formik.touched.firstName, formik.errors.firstName)
+            }
+            errorMessage={showFieldError(
+              formik.touched.firstName,
+              formik.errors.firstName
+            )}
+          />
+          <TextField
+            name="lastName"
+            label="Last Name"
+            value={formikValues.lastName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            // isDisabled={isLoading}
+            isInvalid={
+              !!showFieldError(formik.touched.lastName, formik.errors.lastName)
+            }
+            errorMessage={showFieldError(
+              formik.touched.lastName,
+              formik.errors.lastName
+            )}
+          />
+        </div>
+
         <TextField
-          name="firstName"
-          label="First Name"
-          value={formikValues.firstName}
+          name="email"
+          label="Email"
+          type="email"
+          value={formikValues.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          // isDisabled={isLoading}
+          isInvalid={!!showFieldError(formik.touched.email, formik.errors.email)}
+          errorMessage={showFieldError(formik.touched.email, formik.errors.email)}
+        />
+
+        <TextField
+          name="phone"
+          label="Mobile Number"
+          type="tel"
+          value={formikValues.phone}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          // isDisabled={isLoading}
+          isInvalid={!!showFieldError(formik.touched.phone, formik.errors.phone)}
+          errorMessage={showFieldError(formik.touched.phone, formik.errors.phone)}
+        />
+        <Select
+          label="Select Role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          className="w-full mt-5"
+          classNames={{ innerWrapper: "!pt-0 !h-[4px] !min-h-[4px]", trigger: "!h-[40px] !min-h-[40px]" }}
+        >
+          {roles.map((animal) => (
+            <SelectItem value={animal.label} key={animal.key} >
+              {animal.label}
+            </SelectItem>
+          ))}
+        </Select>
+        <TextField
+          name="password"
+          label="Password"
+          type={isPassVisible ? "text" : "password"}
+          value={formikValues.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           // isDisabled={isLoading}
           isInvalid={
-            !!showFieldError(formik.touched.firstName, formik.errors.firstName)
+            !!showFieldError(formik.touched.password, formik.errors.password)
           }
           errorMessage={showFieldError(
-            formik.touched.firstName,
-            formik.errors.firstName
+            formik.touched.password,
+            formik.errors.password
           )}
+          endContent={passwordToggleEl}
         />
+
         <TextField
-          name="lastName"
-          label="Last Name"
-          value={formikValues.lastName}
+          name="confirmPassword"
+          label="Confirm Password"
+          type={isConfirmPassVisible ? "text" : "password"}
+          value={formikValues.confirmPassword}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           // isDisabled={isLoading}
           isInvalid={
-            !!showFieldError(formik.touched.lastName, formik.errors.lastName)
+            !!showFieldError(
+              formik.touched.confirmPassword,
+              formik.errors.confirmPassword
+            )
           }
           errorMessage={showFieldError(
-            formik.touched.lastName,
-            formik.errors.lastName
-          )}
-        />
-      </div>
-
-      <TextField
-        name="email"
-        label="Email"
-        type="email"
-        value={formikValues.email}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        // isDisabled={isLoading}
-        isInvalid={!!showFieldError(formik.touched.email, formik.errors.email)}
-        errorMessage={showFieldError(formik.touched.email, formik.errors.email)}
-      />
-
-      <TextField
-        name="phone"
-        label="Mobile Number"
-        type="tel"
-        value={formikValues.phone}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        // isDisabled={isLoading}
-        isInvalid={!!showFieldError(formik.touched.phone, formik.errors.phone)}
-        errorMessage={showFieldError(formik.touched.phone, formik.errors.phone)}
-      />
-      <Select
-        label="Select Role"
-        value={role}
-        onChange={(e) => setRole(e.target.value)}
-        className="w-full mt-5"
-        classNames={{ innerWrapper: "!pt-0 !h-[4px] !min-h-[4px]", trigger: "!h-[40px] !min-h-[40px]" }}
-      >
-        {roles.map((animal) => (
-          <SelectItem value={animal.label}  key={animal.key} >
-            {animal.label}
-          </SelectItem>
-        ))}
-      </Select>
-      <TextField
-        name="password"
-        label="Password"
-        type={isPassVisible ? "text" : "password"}
-        value={formikValues.password}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        // isDisabled={isLoading}
-        isInvalid={
-          !!showFieldError(formik.touched.password, formik.errors.password)
-        }
-        errorMessage={showFieldError(
-          formik.touched.password,
-          formik.errors.password
-        )}
-        endContent={passwordToggleEl}
-      />
-
-      <TextField
-        name="confirmPassword"
-        label="Confirm Password"
-        type={isConfirmPassVisible ? "text" : "password"}
-        value={formikValues.confirmPassword}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        // isDisabled={isLoading}
-        isInvalid={
-          !!showFieldError(
             formik.touched.confirmPassword,
             formik.errors.confirmPassword
-          )
-        }
-        errorMessage={showFieldError(
-          formik.touched.confirmPassword,
-          formik.errors.confirmPassword
-        )}
-        endContent={confirmPasswordToggleEl}
-      />
+          )}
+          endContent={confirmPasswordToggleEl}
+        />
 
-      <p className="text-center text-[16px]">
-        <b>Already</b> have an account?{" "}
-        <Link
-          href={"/login"}
-          className="text-blue-600"
+        <p className="text-center text-[16px]">
+          <b>Already</b> have an account?{" "}
+          <Link
+            href={"/login"}
+            className="text-blue-600"
+          >
+            Login
+          </Link>
+        </p>
+
+        <Button
+          radius="sm"
+          fullWidth
+          className=" text-white text-[16px]"
+          color="primary"
+          // isLoading={isLoading}
+          // onPress={() => router.push('/')}
+          onClick={handleSignUp}
         >
-          Login
-        </Link>
-      </p>
-
-      <Button
-        radius="sm"
-        fullWidth
-        className=" text-white text-[16px]"
-        color="primary"
-        // isLoading={isLoading}
-        // onPress={() => router.push('/')}
-        onClick={handleSignUp}
-      >
-        Sign up
-      </Button>
-    </div>
+          Sign up
+        </Button>
+      </div>
     </Suspense>
   );
 };

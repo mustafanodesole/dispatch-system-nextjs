@@ -17,7 +17,7 @@ import { useRouter } from 'next/navigation';
 
 
 
-export default function NavBar2() {
+export default function PublicNavbar() {
 
     const [state, setState] = useState(false)
 
@@ -27,21 +27,12 @@ export default function NavBar2() {
 
 
     const navigation = [
-        { title: "Home", path: "/" },
-        { title: "Dashboard", path: "/dashboard" },
-        { title: "Calls History", path: "/calls-history" },
-        { title: "Map", path: "/map" },
+        { title: "Login", path: "/login" },
+        { title: "Register", path: "/sign-up" },
+       
     ];
 
-    const handleLogout = async () => {
-        try {
-            const res = axios.get("/api/auth/logout")
-            toast.success("Logged Out Sucessfully")
-            router.push("/login")
-        } catch (error) {
-
-        }
-    }
+   
 
 
     return (
@@ -88,51 +79,7 @@ export default function NavBar2() {
                         {/* <span className='hidden w-px h-6 bg-gray-300 md:block'></span> */}
 
                 
-                            <div className='space-y-3  items-center gap-x-6 md:flex md:space-y-0 flex flex-col justify-center md:flex-row '>
-                                {currentPath === "/map" && <Input
-                                    isClearable
-                                    radius="lg"
-                                    className="w-auto"
-                                    placeholder="Search for personal by name id"
-                                    startContent={
-                                        <CiSearch className="text-[#2D8076] mb-0.5 pointer-events-none flex-shrink-0" />
-                                    }
-                                />}
-
-                                <li>
-                                    <IoSettingsSharp className='text-white hover:bg-white/40 p-2 rounded-md text-4xl' />
-                                </li>
-                                <li>
-                                    <FaBell className='text-white hover:bg-white/40 p-2 rounded-md text-4xl' />
-                                </li>
-                                <li>
-                                    {/* <a href="/signin" className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline">
-                                    Sign in
-                                </a> */}
-                                    <Dropdown>
-                                        <DropdownTrigger>
-                                            <Button
-                                                // variant="bordered"
-                                                className='bg-transparent p-0'
-                                            >
-                                                <CgProfile className='rounded-full text-2xl text-white' />
-                                            </Button>
-                                        </DropdownTrigger>
-                                        <DropdownMenu
-                                            aria-label="Action event example"
-                                            // onAction={(key) => alert(key)}
-                                        >
-                                            <DropdownItem key="profile"><Link href={'/profile'}>  Profile </Link></DropdownItem>
-                                            <DropdownItem onClick={handleLogout} key="logout" className="text-danger" color="danger">
-                                                Log Out
-                                            {/* <Toaster /> */}
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </Dropdown>
-
-
-                                </li>
-                            </div>
+                        
                  
                     </ul>
                 </div>

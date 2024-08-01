@@ -8,6 +8,7 @@ export function middleware(request: NextRequest) {
   const isPublicPath = path === "/login" || path === "/sign-up";
 
   const token = request.cookies.get("token")?.value || "";
+  console.log("Middleware token" ,token)
 
   if (isPublicPath && token) {
     return NextResponse.redirect(
@@ -23,5 +24,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/","/dashboard/:path*" , "/map"],
+  matcher: ["/","/dashboard/:path*" ,"/calls-history", "/map"],
 };
