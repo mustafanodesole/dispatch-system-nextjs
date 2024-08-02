@@ -22,7 +22,6 @@ const LoginSignup: FC = () => {
         <CardBody className="">
           <LoginTab setSelected={setSelected} onClick={handleNaviagtion} />
         </CardBody>
-      
       </Card>
     </div>
   );

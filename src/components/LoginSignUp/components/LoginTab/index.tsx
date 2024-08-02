@@ -174,7 +174,7 @@ const LoginTab: FC<LoginTabProps> = ({ setSelected, onClick }) => {
         </Link>
       </p> */}
 
-      <Link href={"/sign-up"} className="text-blue-600 text-center">
+      <Link href={'/forgotpassword'} className="text-blue-600 text-center">
         Forgot password?
       </Link>
       <Button

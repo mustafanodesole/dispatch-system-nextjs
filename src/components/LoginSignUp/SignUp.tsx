@@ -14,7 +14,7 @@ const LoginSignup: FC = () => {
           Signup
         </CardHeader>
         <CardBody>
-            <SignUpTab setSelected={setSelected} />
+          <SignUpTab setSelected={setSelected} />
         </CardBody>
       </Card>
     </div>

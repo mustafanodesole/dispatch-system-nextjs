@@ -4,14 +4,11 @@ import { FC } from "react";
 
 const LoginSignupPage: FC = () => {
   return (
-  
-<>
-    <PublicNavbar />
-  <LoginSignup />
-
-</>  
-
-);
+    <>
+      <PublicNavbar />
+      <LoginSignup />
+    </>
+  );
 };
 
 export default LoginSignupPage;
