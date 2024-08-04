@@ -18,14 +18,26 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
       });
     }
 
+    // var transport = nodemailer.createTransport({
+    //   host: "sandbox.smtp.mailtrap.io",
+    //   port: 2525,
+    //   auth: {
+    //     user: process.env.MAILTRAP_USERID,
+    //     pass: process.env.MAILTRAP_PASS
+    //   },
+    // });
+
+
     var transport = nodemailer.createTransport({
-      host: "sandbox.smtp.mailtrap.io",
-      port: 2525,
-      auth: {
-        user: process.env.MAILTRAP_USERID,
-        pass: process.env.MAILTRAP_PASS
-      },
-    });
+        service : "gmail",
+        secure : true,
+        port : 465,
+        auth : {
+          user : "tawab05@gmail.com",
+          pas : "jnhwlalnourpeyme"
+        }
+    })
+
 
     const mailOptions = {
       from: "umair@gmail.com",
