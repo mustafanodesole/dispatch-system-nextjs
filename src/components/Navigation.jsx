@@ -56,9 +56,9 @@ const Navigation = () => {
         <>
 
             <div>
-                <Popup isOpen={showModal} onClose={handleCloseModal} />
+                {/* <Popup isOpen={showModal} onClose={handleCloseModal} /> */}
                 <Map center={center} height={"80vh"} />
-
+                
                
             </div>
 
