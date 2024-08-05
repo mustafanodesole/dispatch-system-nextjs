@@ -35,9 +35,9 @@ const ImmediateResponseForm = ({ onSubmit }) => {
   return (
     <>
       <div className="overflow-hidden">
-        <Map center={center} height={"56vh"} />
+        <Map center={center} height={"60vh"} />
         <form
-          className="max-w-[95%] mx-auto mt-8 basis-full  h-full p-5 bg-white rounded-lg shadow-lg"
+          className="max-w-[98%] mx-auto mt-5 basis-full  h-full p-5 bg-white rounded-lg shadow-lg"
           onSubmit={handleSubmit}
         >
           <p className="text-[23px] font-bold pb-5">Add Information</p>
