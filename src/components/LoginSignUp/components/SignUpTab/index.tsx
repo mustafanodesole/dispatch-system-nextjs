@@ -102,7 +102,7 @@ const SignUpTab: FC<SignUpTabProps> = ({ setSelected }) => {
         }
       );
       toast.success("Form Submitted");
-      console.log(response.data);
+      
       router.push("/login");
     } catch (error: any) {
       console.log(error.message);

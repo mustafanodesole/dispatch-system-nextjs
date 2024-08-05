@@ -27,6 +27,7 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     //   },
     // });
 
+<<<<<<< HEAD
     var transport = nodemailer.createTransport({
       service : "gmail",
       secure : true,
@@ -36,6 +37,18 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
         pas : "jnhwlalnourpeyme"
       }
   })
+=======
+
+    var transport = nodemailer.createTransport({
+        service : "gmail",
+        secure : true,
+        port : 465,
+        auth : {
+          user : "tawab05@gmail.com",
+          pas : "jnhwlalnourpeyme"
+        }
+    })
+>>>>>>> df72446085390e566ea2eda6e6f5c535aac5e91c
 
 
     const mailOptions = {

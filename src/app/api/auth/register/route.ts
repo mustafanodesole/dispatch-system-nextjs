@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
     const { firstname , lastname , email , phone , role , password } = reqBody;
-    console.log("Body :", reqBody);
+  
 
     //check if user already exist
     const user = await User.findOne({ email, phone });
