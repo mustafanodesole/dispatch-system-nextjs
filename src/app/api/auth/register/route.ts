@@ -37,7 +37,6 @@ export async function POST(request: NextRequest) {
 
     const savedUser = await newUser.save();
 
-    console.log("Saved User from Sign Up APi ", savedUser);
 
     // send verfication email
     await sendEmail({

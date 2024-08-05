@@ -7,7 +7,7 @@ import { CiSearch } from "react-icons/ci";
 import AccordionComponent from "./AccordionComponent";
 import { MdKeyboardArrowDown, MdKeyboardArrowRight } from "react-icons/md";
 import './index.css'
-const rows = [
+export const rows = [
     {
         id: 1, caller: 'Anas Abrar', phoneNumber: '(406) 555-0120', dateTime: 'November 28, 2023',
         emergencyType: 'Ambulance', duration: '00:38', status: 'completed', age: '25 years',
@@ -28,7 +28,7 @@ const rows = [
     }
 ];
 
-const columns = [
+export const columns = [
     {
         key: "caller",
         label: "Call Person",
